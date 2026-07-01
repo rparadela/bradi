@@ -1,5 +1,7 @@
 # BrADI: Brazilian Area Deprivation Index
 
+[![DOI](https://zenodo.org)](https://doi.org)
+
 ## Overview
 
 The **Brazilian Area Deprivation Index (BrADI)** is a socioeconomic deprivation index developed using data from the **2000, 2010, and 2022 Brazilian Demographic Censuses (IBGE)**. BrADI quantifies area-level deprivation across Brazil using harmonized socioeconomic indicators aggregated at the census tract level.
@@ -275,4 +277,4 @@ If you use BrADI in your research, please cite as indicated below.
 
 ## Citation
 
-Paradela, R. (2026). Brazilian Area Deprivation Index (BrADI). Zenodo. https://doi.org/XXXXX
+Paradela, R. (2026). Brazilian Area Deprivation Index (BrADI) (1.0.0). Zenodo. https://doi.org/10.5281/zenodo.21109584
