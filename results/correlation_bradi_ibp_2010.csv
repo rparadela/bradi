@@ -1,0 +1,2 @@
+comparison,n_sectors,pearson_r,ci_lower,ci_upper,p_value
+BrADI vs IBP (Year 2010),310114,0.9809,0.9808,0.9811,<2e-16

@@ -1,0 +1,7 @@
+variable,PA1,h2,u2,variance_explained,cronbach_alpha
+prop_pess_15anos_analfab_std,0.8578,3.843,0.2642,0.6405,0.9132
+prop_sem_agua_std,0.7624,3.843,0.4188,0.6405,0.9132
+prop_sem_banheiro_std,0.7564,3.843,0.4279,0.6405,0.9132
+prop_sem_esgoto_std,0.7925,3.843,0.372,0.6405,0.9132
+prop_sem_coleta_lixo_std,0.8796,3.843,0.2264,0.6405,0.9132
+renda_responsavel_log_std,0.7431,3.843,0.4478,0.6405,0.9132

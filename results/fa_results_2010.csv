@@ -1,0 +1,10 @@
+variable,PA1,h2,u2,variance_explained,cronbach_alpha
+prop_pess_15anos_analfab_std,0.8661,5.1385,0.2499,0.5709,0.9171
+prop_sem_agua_std,0.6217,5.1385,0.6135,0.5709,0.9171
+prop_sem_banheiro_std,0.6436,5.1385,0.5858,0.5709,0.9171
+prop_sem_esgoto_std,0.6958,5.1385,0.5159,0.5709,0.9171
+prop_sem_energia_std,0.4891,5.1385,0.7608,0.5709,0.9171
+prop_sem_coleta_lixo_std,0.7833,5.1385,0.3865,0.5709,0.9171
+prop_extrema_pobreza_log_std,0.8958,5.1385,0.1975,0.5709,0.9171
+prop_linha_pobreza_log_std,0.885,5.1385,0.2168,0.5709,0.9171
+renda_mensal_dom_log_std,0.8155,5.1385,0.3349,0.5709,0.9171
