@@ -29,11 +29,11 @@
 #     Applies standardize_census_tract_name() only in 2000 and 2022. 
 #
 #   - read_entorno():
-#     read Entorno01 file from 2010 census with automatic XLS fallback
+#     read Entorno01 file from 2010 census with automatic XLS fallback.
 #
 #   - census_tract_code_truncated():
 #     check if Cod_setor is truncated (lost precision in scientific notation)
-#     for some files in 2010 census 
+#     for some files in 2010 census. 
 #
 # Indicator standardization:
 #   - standardize_bradi():
