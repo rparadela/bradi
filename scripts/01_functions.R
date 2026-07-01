@@ -14,14 +14,14 @@
 #
 # Helper functions:
 #   - normalize_census_tract_code():
-#     Reads census sector codes as character strings to prevent loss of
+#     Reads census tract codes as character strings to prevent loss of
 #     precision and incomplete codes. Used in all three census years
 #     (2000, 2010, 2022).
 #
 #   - standardize_census_tract_name():
-#     Standardizes sector code variable names to ensure that the final
-#     data frames contain a common identifier (Cod_setor). Used in 2000
-#     and 2022. 
+#     Standardizes census tract code variable names to ensure that 
+#     the final data frames contain a common identifier (Cod_setor). 
+#     Used in 2000 and 2022. 
 #
 #   - read_census():
 #     Reads census files, replaces "X" values with NA, and applies
@@ -60,9 +60,9 @@
 #     read_census() uses read_xls(). Files from the 2010 and 2022 censuses are
 #     read from .csv files.
 #
-#   - NaN values resulting from 0/0 divisions (e.g., sectors with no households
-#     or missing data) are converted to NA. During BrADI calculation, sectors
-#     are scored using the remaining available indicators (na.rm = TRUE).
+#   - NaN values resulting from 0/0 divisions (e.g., census tracts with 
+#     no households or missing data) are converted to NA. During BrADI calculation, 
+#     census tracts are scored using available indicators (na.rm = TRUE).
 #
 #   - Ten candidate deprivation indicators were derived from the 2010 Census.
 #     To harmonize data across the 2000, 2010, and 2022 censuses, the same
@@ -82,7 +82,7 @@
 #'                 SP is split into "SP1" and "SP2"; call separately and bind_rows().
 #' @param base_dir Path to the root directory containing UF folders
 #'
-#' @return         A data frame with one row per census sector and columns:
+#' @return         A data frame with one row per census tract and columns:
 #'                 Cod_setor, V0003 (number of households), UF, and 
 #'                 the deprivation indicators.
 
@@ -108,7 +108,7 @@ build_indicators_2000 <- function(uf,
       ))
   }
   
-  # Helper: standardizes the name of the sector code column to "Cod_setor"
+  # Helper: Standardizes the census tract code column name to "Cod_setor"
   standardize_census_tract_name <- function(df) {
     possible_names <- c("CD_SETOR","CD_setor", "setor", "Cod_setor")
     matched_name <- intersect(possible_names, names(df))
@@ -238,7 +238,7 @@ build_indicators_2000 <- function(uf,
 #' @param sep_pessoa Separator used in the files.
 #'                   The ";" is the default.
 #'
-#' @return           A data frame with one row per census sector and columns:
+#' @return           A data frame with one row per census tract and columns:
 #'                   Cod_setor, V002 (number of households), UF, and 
 #'                   the deprivation indicators.
 
@@ -460,7 +460,7 @@ build_indicators_2010 <- function(uf,
 #' @param sep_pessoa Separator used in the files.
 #'                    The ";" is the default.
 #'
-#' @return           A data frame with one row per census sector and columns:
+#' @return           A data frame with one row per census tract and columns:
 #'                   Cod_setor, V00001 (number of households), and 
 #'                   the deprivation indicators.
 
@@ -483,7 +483,7 @@ build_indicators_2022 <- function(base_dir   = "data/raw/census_2022/setor_censi
       ))
   }
   
-  # Helper: standardizes the name of the sector code column to "Cod_setor"
+  # Helper: Standardizes the census tract code column name to "Cod_setor"
   standardize_census_tract_name <- function(df) {
     possible_names <- c("CD_SETOR","CD_setor", "setor", "Cod_setor")
     matched_name <- intersect(possible_names, names(df))
@@ -599,7 +599,7 @@ build_indicators_2022 <- function(base_dir   = "data/raw/census_2022/setor_censi
   
   # -- Final Merge -------------------------------------------------------------
   # No UF filter here: source files are national, and this function currently
-  # returns all sectors in Brazil. 
+  # returns all census tracts in Brazil. 
   final <- pessoa %>%
     select(Cod_setor, prop_pess_15anos_analfab) %>%
     left_join(domicilio, by = "Cod_setor") %>%
