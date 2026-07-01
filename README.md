@@ -52,7 +52,7 @@ The table below describes each deprivation indicator, its variable name in the d
 | Lack of electricity (%) | `prop_sem_energia` | Proportion of permanent private households without electricity | — | ✓ | — | 2010 only |
 | Lack of adequate waste collection (%) | `prop_sem_coleta_lixo` | Proportion of permanent private households without waste collection by public cleaning service | ✓ | ✓ | ✓ | All years |
 
-\* `prop_propriedade` was excluded from the final BrADI across all years: factor loading = −0.03 in 2000 (below the |0.20| cutoff) and −0.23 in 2010 (low communality = 0.051 and counterintuitive direction relative to other deprivation indicators. Not available in 2022. The variable is retained in the dataset for reference and potential use in future analyses.
+\* `prop_propriedade` was excluded from the final BrADI across all years: factor loading = −0.03 in 2000 (below the |0.20| cutoff) and −0.23 in 2010 (low communality = 0.051 and counterintuitive direction. Not available in 2022. The variable is retained in the dataset for reference and potential use in future analyses.
 
 ### Additional Variables in the Dataset
 
@@ -137,7 +137,7 @@ BrADI/
 │   │   └── census_2022/
 │   │       └── setor_censitario/           # CSV files, national (all UFs in single files)
 │   │
-│   └── processed/
+│   └── processed/                          # Not included — see Processed Data Availability below
 │       ├── df_indicators_bradi_2000.csv    # Indicators + standardized variables (2000)
 │       ├── df_indicators_bradi_2010.csv    # Indicators + standardized variables (2010)
 │       ├── df_indicators_bradi_2022.csv    # Indicators + standardized variables (2022)
@@ -204,8 +204,8 @@ Same as above for 2010, plus: generates a national choropleth map and tests conv
 
 ## Key Technical Notes
 
-### Census sector codes (`Cod_setor`)
-All sector codes are preserved as 15-digit zero-padded character strings to prevent loss of precision during numeric conversion. The first two digits identify the state (UF).
+### Census tract codes (`Cod_setor`)
+All tract codes are preserved as 15-digit zero-padded character strings to prevent loss of precision during numeric conversion. The first two digits of the code identify the Brazilian state (Federative Unit, UF).
 
 ### São Paulo split (2000 and 2010)
 IBGE distributes São Paulo data across two folders (`SP1` and `SP2`) in the 2000 and 2010 censuses. The indicator functions must be called separately for each (`uf = "SP1"` and `uf = "SP2"`), and results are combined via `bind_rows()` before further processing.
@@ -214,13 +214,13 @@ IBGE distributes São Paulo data across two folders (`SP1` and `SP2`) in the 200
 Unlike 2000 and 2010, the 2022 census data are distributed as national files (one per topic, covering all states). `build_indicators_2022()` reads these files directly and returns data for all of Brazil. UF identification is derived from `Cod_setor` using the first two digits.
 
 ### IBGE data correction (15/06/2026)
-IBGE issued a correction to all 2010 census sector CSV files on 15/06/2026, fixing corruption in the `Cod_setor` column. All 2010 data used in this project were downloaded after this correction. Additionally, the separator used in São Paulo files (`SP2`) changed from comma (`,`) to semicolon (`;`) as part of this update.
+IBGE issued a correction to all 2010 census tract CSV files on 15/06/2026, fixing corruption in the `Cod_setor` column. All 2010 data used in this project were downloaded after this correction. Additionally, the separator used in São Paulo files (`SP2`) changed from comma (`,`) to semicolon (`;`) as part of this update.
 
 ### XLS fallback (2010)
 Some UFs in 2010 (DF, MG, PE, RS) had `Entorno01` CSV files where `Cod_setor` was stored in European scientific notation with insufficient precision. `read_entorno()` automatically falls back to the XLS file for these UFs when truncation is detected. As of the IBGE correction of 15/06/2026, this issue was confirmed resolved (0% truncation across all affected UFs). The fallback is retained as a safeguard for reproducibility on pre-correction files.
 
 ### Missing data
-`NA` values arise from two sources: (1) sectors with zero or suppressed households (IBGE uses `"X"` as a code for statistically suppressed data); and (2) indicators not available for a given census year. Sectors with missing data on some indicators are still scored using the remaining available indicators (`na.rm = TRUE` in score calculation).
+`NA` values arise from two sources: (1) sectors with zero or suppressed households (IBGE uses `"X"` as a code for statistically suppressed data); and (2) indicators not available for a given census year. Sectors with missing indicators are scored using available information (na.rm = TRUE).
 
 ---
 
@@ -244,12 +244,18 @@ Results are saved in `results/correlation_bradi_ibp_2010.csv`.
 
 ## Raw Data
 
-Raw census data are not included in this repository due to file size. Data can be downloaded from:
+Raw census data are not included in this repository. They can be downloaded from:
 
 - **Census data (2000, 2010, 2022)**: https://www.ibge.gov.br/estatisticas/sociais/populacao/9663-censo-demografico  
   Navigate to the desired census year and select *Agregados por Setores Censitários*
 - **Shapefiles (2010)**: https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/
 - **IBP (BrazDep)**: Available at https://cidacs.bahia.fiocruz.br/ibp/ 
+
+---
+
+## Processed Data Availability
+
+The processed datasets used to calculate the BrADI are not included in this GitHub repository. They are available from the corresponding author upon reasonable request. Please contact Regina Paradela at **regina.paradela@gbhi.org**.
 
 ---
 
@@ -263,10 +269,10 @@ This project was supported by a grant from the **Global Brain Health Institute (
 
 The code in this repository is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
 
-The BrADI index values and derived datasets are made available for research and non-commercial use. If you use BrADI in your research, please cite as indicated below.
+If you use BrADI in your research, please cite as indicated below.
 
 ---
 
 ## Citation
 
-If using BrADI, please cite: XXXXX
+Paradela, R. (2026). Brazilian Area Deprivation Index (BrADI). Zenodo. https://doi.org/XXXXX
