@@ -1,6 +1,6 @@
 # BrADI: Brazilian Area Deprivation Index
 
-[![DOI](https://zenodo.org)](https://doi.org)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21109584.svg)](https://doi.org/10.5281/zenodo.21109584)
 
 ## Overview
 
